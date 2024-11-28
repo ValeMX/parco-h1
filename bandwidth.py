@@ -38,7 +38,7 @@ for code in custom_code_order:
             color=color,
             marker="o",
             linestyle="-",
-            label=(code + " - S"),
+            label=(code),
         )
 
 ax.text(
@@ -50,7 +50,7 @@ ax.text(
     ha="center",
 )
 
-peak_bandwidth = 281.568
+peak_bandwidth = float(input("Enter the peak bandwidth in GB/s: "))
 ax.axhline(y=peak_bandwidth, color="red", linestyle="--")
 
 ax.text(
