@@ -53,7 +53,7 @@ Contents of `results_omp.csv`:
 | efficiency2 | The computed efficiency of the transpose routine |
 | bandwidth | The computed bandwidth in B/s of the transpose routine |
 
-In order to execute the simulations on the local system, ensure that `gcc-9.1.0` is installed and execute the script `start.sh [n] [rep] [threads]`. If no or lower than 3 arguments are passed, the missing ones will be assigned as described before with `start.pbs`. At the end of the simulations, the results will be saved in the `results` folder as 2 .csv files: `results_ilp.csv` and `results_omp.csv`.
+In order to execute the simulations on the local system, ensure that `gcc-9.1.0` is installed and execute the script `start.sh [n] [rep] [threads]` from the home folder of the repository. If no or lower than 3 arguments are passed, the missing ones will be assigned as described before with `start.pbs`. At the end of the simulations, the results will be saved in the `results` folder as 2 .csv files: `results_ilp.csv` and `results_omp.csv`.
 
 In order to execute single programs, ensure that `gcc-9.1.0` is installed and comile using the following commands based on the desired source file:
 
@@ -133,3 +133,26 @@ gcc omp_dynamic_scheduling.c -o omp_dynamic_scheduling_Ofast.o -fopenmp -Ofast -
 ```
 
 After executing the compiled `.o` file (with the parameters `n`, `rep` and `threads` for omp codes as explained above), a `.csv` file will be generated in the same folder with the execution results.
+
+## Analyzing results
+In order to visualize the produced results, there are three python scripts in the home folder:
+- `ilp_table.py`: creates two tables for GFLOPS and Bandwidth in GB/s from data in `results/results_ilp.csv`
+- `omp_plotting.py`: plots the four graphs for speedup and efficiency for symmetry check and transpose (for a specific power of two [4..12]) from data in `results/results_omp.csv`
+- `bandwidth.py`: plots the graph for effective and theoretical peak bandwidth (for a specific power of two [4..12]) from data in `results/results_omp.csv`
+
+In order to be able to execute the python scripts, it is required to have a version of `python 3` along with the modules `numpy`, `pandas`, `matplotlib` and `tabulate` installed. To execute the scripts, assumin that `python` command is available, execute the following commands from the home folder of the repository:
+
+ilp_table.py
+```
+python ilp_table.py
+```
+
+omp_plotting.py
+```
+python omp_plotting.py
+```
+
+bandwidth.py
+```
+python bandwidth.py
+```
