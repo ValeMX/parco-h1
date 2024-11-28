@@ -112,7 +112,8 @@ int __attribute__((optimize("O0"))) main(int argc, char** argv) {
     t1 = elapsedTime(s1, e1) / rep;
     t2 = elapsedTime(s2, e2) / rep;
 
-    flops = (double)((n * n) / 2 - n) / t1;
+    const int size = BLOCK_SIZE < n ? BLOCK_SIZE : n;
+    flops = (double)(n/size * (n/size + 1) / 2 * size * size) / t1;
     bandwidth = (double)(2 * n * n * sizeof(double)) / t2;
 
     printf("Sequential execution: symmetry: %s\n", symmetric ? "true" : "false");
